@@ -72,13 +72,14 @@ for ($i = 1; $i <= 3; $i++) {
 	if($prev_str != 118 || $mrkl_str != 156) die;
 
 #}
-	$train = fann_read_train_from_file("100.txt");
-	$ann = fann_create_from_file("xor_float.net");
-	#fann_set_input_scaling_params($ann, $train , 0.0, 0.9);
-	#fann_scale_input($ann, $test);
+	$train = fann_read_train_from_file("5K.txt");
+	#$ann = fann_create_from_file("xor_float.net");
+	$ann = fann_create_from_file("cascade_train2.net");
+	fann_set_input_scaling_params($ann, $train , -1, 1);
+	fann_scale_input($ann, $test);
 	$out = fann_run($ann, $test);
-	#fann_set_output_scaling_params($ann, $train , 0.0, 0.9);
-	#fann_descale_output($ann, $out);
+	fann_set_output_scaling_params($ann, $train , -1, 1);
+	fann_descale_output($ann, $out);
 	print_r($out);
 echo "SUCESS!";
 }
