@@ -28,7 +28,7 @@ int main()
 	struct fann_train_data *train_data, *test_data;
 	//const float desired_error = (const float)0.0;
 	const float desired_error = (const float)0.001;
-	unsigned int max_neurons = 50;
+	unsigned int max_neurons = 100;
 	unsigned int neurons_between_reports = 1;
 	unsigned int bit_fail_train, bit_fail_test;
 	float mse_train, mse_test;
@@ -54,8 +54,8 @@ int main()
 	ann = fann_create_shortcut(2, fann_num_input_train_data(train_data), fann_num_output_train_data(train_data));
 		
 	fann_set_training_algorithm(ann, training_algorithm);
-	//fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC);
-	fann_set_activation_function_hidden(ann, FANN_SIGMOID);
+	fann_set_activation_function_hidden(ann, FANN_SIGMOID_SYMMETRIC);
+	//fann_set_activation_function_hidden(ann, FANN_SIGMOID);
 	fann_set_activation_function_output(ann, FANN_LINEAR);
 	fann_set_train_error_function(ann, FANN_ERRORFUNC_LINEAR);
 
